@@ -36,4 +36,8 @@
     getall ->   localhost:3500/cart/
     add    ->   localhost:3500/cart/add
     delete ->   localhost:3500/cart/delete/:id
+ 
+# cart-flow
+![cartoperations](https://user-images.githubusercontent.com/87657007/213569435-49a579e8-d321-46fd-bffb-4704fe1330a8.png)
+
     
