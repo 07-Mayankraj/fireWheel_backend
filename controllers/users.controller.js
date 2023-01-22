@@ -43,7 +43,8 @@ exports.login = async (req, res) => {
                     // token sent
                     res.send({ "message": "login success", "Token" : `${token}` })
                 }else{
-                    res.status(403).json({ message:err.message })
+                     res.status(403).json({"message": "Invalid Credentials" })
+                    //  res.status(403).send({ "message": "Invalid Credentials"})
                 }
             })
         }
