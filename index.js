@@ -7,14 +7,26 @@ const authentication = require('./middlewares/authentication.middleware')
 const productRoute = require('./routes/products.route')
 const cartRoute = require('./routes/cart.route')
 const { allusers } = require('./controllers/users.controller')
+const UserModel = require('./models/user.model')
 const app = express()
-
 // middlewares
 app.use(cors())
 app.use(express.json())
 // routers
 app.get('/',(req,res)=>res.send('homeroute Of backend'))
-userRoute.post('/allusers', allusers)
+app.use('/allusers',async(req,res)=>{
+    
+    try {
+        const users = await UserModel.find()
+        if (users) res.json(users)
+        else{
+            res.send('No users found')
+        }
+    } catch (error) {
+        res.json({error : error.message })
+    }
+
+})
 app.use('/users',userRoute)
 app.use('/products',productRoute)
 // protected routes

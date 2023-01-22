@@ -50,14 +50,3 @@ exports.login = async (req, res) => {
 }
 
 
-exports.allusers = async (req, res) => {
-    try {
-        const users = await UserModel.find()
-        if (users) res.json(users)
-        else{
-            res.send('No users found')
-        }
-    } catch (error) {
-        res.json({error : error.message })
-    }
-}
