@@ -37,14 +37,14 @@ exports.login = async (req, res) => {
     try {
         const user = await UserModel.find({ email })
         if (user.length !== 0) {
-            bcrypt.compare(password, user[0].password,(err,res) => {
-                if(res){
+            //  compare password
+            bcrypt.compare(password, user[0].password,(err,success) => {
+                if(success){
                     token = jwt.sign({ userID: user[0]._id }, JWT_SECRET_KEY, { expiresIn: '24h' })
                     // token sent
                     res.json({ "message": "login success", "Token" : `${token}` })
                 }else{
                      res.status(403).json({"message": "Invalid Credentials" })
-                    //  res.status(403).send({ "message": "Invalid Credentials"})
                 }
             })
         }
