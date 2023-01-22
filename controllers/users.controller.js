@@ -41,7 +41,7 @@ exports.login = async (req, res) => {
                 if(res){
                     token = jwt.sign({ userID: user[0]._id }, JWT_SECRET_KEY, { expiresIn: '24h' })
                     // token sent
-                    res.send({ "message": "login success", "Token" : `${token}` })
+                    res.json({ "message": "login success", "Token" : `${token}` })
                 }else{
                      res.status(403).json({"message": "Invalid Credentials" })
                     //  res.status(403).send({ "message": "Invalid Credentials"})
